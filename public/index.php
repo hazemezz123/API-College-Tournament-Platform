@@ -74,14 +74,16 @@
 
         </form>
         <!-- Student Tournament Section -->
-        <div class="container mx-auto mt-10 p-6 rounded-lg shadow-md bg-DarkBackGround">
-            <h2 class="text-2xl font-bold mb-4 text-VeryLightGray">About the Student Tournament</h2>
-            <p class="text-SoftGray mb-4">
-                Join the exciting Student Tournament where students from various schools compete in sports, academics, and arts!
-                Stay tuned for the next tournament dates and events. Winners will receive special recognition and prizes!
-            </p>
-            <div class="mt-24">
-                <a href="tournament_details.php" class="  border-VeryLightGray border-2 text-VeryLightGray py-2 px-4  rounded hover:scale-95 transition-all hover:bg-VeryLightGray hover:text-DarkBackGround">
+        <div class="container mx-auto mt-10 p-6 rounded-lg shadow-md bg-DarkBackGround flex justify-between flex-col">
+            <div>
+                <h2 class="text-2xl font-bold mb-4 text-VeryLightGray">About the Student Tournament</h2>
+                <p class="text-SoftGray mb-4">
+                    Join the exciting Student Tournament where students from various schools compete in sports, academics, and arts!
+                    Stay tuned for the next tournament dates and events. Winners will receive special recognition and prizes!
+                </p>
+            </div>
+            <div class="mb-4.5">
+                <a href="tournament_details.php" class="border-VeryLightGray border-2 text-VeryLightGray py-2 px-4  rounded hover:scale-95 transition-all hover:bg-VeryLightGray hover:text-DarkBackGround">
                     Learn More
                 </a>
             </div>
