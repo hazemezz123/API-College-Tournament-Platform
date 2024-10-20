@@ -1,20 +1,20 @@
 <head>
     <link rel="stylesheet" href="../build.css">
 </head>
+
 <?php
 session_start();
 include("../handlers/Connection.php");
 
-
 if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["email"])) {
 
-    // Sanitize inputs
+    // Sanitize inputs using a custom validation function (ensure Validate() function exists)
     $username = Validate($_POST["username"]);
     $password = Validate($_POST["password"]);
-    $email = Validate($_POST["email"]);  // Corrected email assignment
+    $email = Validate($_POST["email"]);
 
-    // Prepared statement for selecting user data
-    $stmt = mysqli_prepare($conn, "SELECT id, username, Password,email,age FROM users WHERE email = ?");
+    // Prepared statement to select user data
+    $stmt = mysqli_prepare($conn, "SELECT id, username, Password FROM users WHERE email = ?");
 
     if ($stmt) {
         // Bind the email parameter
@@ -33,30 +33,29 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["emai
                 // Successful login, set session variables
                 $_SESSION['user_id'] = $id;
                 $_SESSION['username'] = $username;
-                $_SESSION['email'] = $username;
+                $_SESSION['email'] = $email;
                 $_SESSION['logged_in'] = true;
                 header("Location: ../Home.php");
                 exit();
             } else {
                 // Password is incorrect
                 $_SESSION['error'] = "Invalid email or password.";
-                echo $_SESSION["error"];
+                header("Location: ../index.php ");
             }
         } else {
-            // No user with that email found
             $_SESSION['error'] = "No user found with that email.";
-            echo $_SESSION["error"];
+            header("Location: ../index.php ");
         }
 
         // Close the statement
         mysqli_stmt_close($stmt);
     } else {
-        // If there's a problem with the query
+        // Query error
         $_SESSION['error'] = "Database error: " . mysqli_error($conn);
     }
 } else {
-    // If required fields are missing
-    $_SESSION['error'] = "Please enter both email and password.";
+    // Missing fields
+    $_SESSION['error'] = "Please fill in all required fields.";
     echo $_SESSION['error'];
 }
 ?>

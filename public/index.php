@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+session_start();
+include("./handlers/Connection.php");
+?>
 
 <head>
     <style>
@@ -59,6 +63,14 @@
             <div class="mb-4">
                 <label for="password" class="block text-SoftGray pb-2">email</label>
                 <input autocomplete="FALSE" type="email" id="email" name="email" required class="border rounded w-full py-2 px-3 bg-DarkGray text-VeryLightGray focus:ring-4 focus:ring-VeryLightGray focus:ring-opacity-50 focus:outline-none transition-all">
+                <?php if (isset($_SESSION['error'])): ?>
+                    <div class="text-red-600 p-2">
+                        <?php
+                        echo $_SESSION['error'];
+                        session_unset();
+                        ?>
+                    </div>
+                <?php endif ?>
             </div>
             <!-- Submit Button -->
             <div class="flex flex-col sm:flex-row gap-5 items-center justify-start mt-4">
@@ -71,7 +83,6 @@
                     Create an <a href="SignUp.php" class="text-blue-500 underline hover:text-blue-300 transition-all">new account</a>
                 </span>
             </div>
-
         </form>
         <!-- Student Tournament Section -->
         <div class="container mx-auto mt-10 p-6 rounded-lg shadow-md bg-DarkBackGround flex justify-between flex-col">
