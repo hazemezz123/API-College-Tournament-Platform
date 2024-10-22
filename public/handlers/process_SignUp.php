@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($row['userCount'] >= 40) {
             $_SESSION['Submit'] = "Maximum number of users reached. You cannot register more than 40 users.";
-        } else {
+        } else {    
             $stmt = mysqli_prepare($conn, "SELECT email FROM users WHERE email = ?");
             if ($stmt) {
                 mysqli_stmt_bind_param($stmt, "s", $email);
@@ -42,16 +42,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         mysqli_stmt_close($stmt_insert);
                     } else {
                         $_SESSION['Submit'] = "Prepared statement for inserting user failed: " . mysqli_error($conn);
+                        echo $_SESSION['Submit'];
                     }
                 } else {
                     $_SESSION['Submit'] = "The email is already in use. Try another one!";
+                    echo $_SESSION['Submit'];
                 }
                 mysqli_stmt_close($stmt);
             } else {
                 $_SESSION['Submit'] = "Prepared statement for checking email failed: " . mysqli_error($conn);
+                echo $_SESSION['Submit'];
             }
         }
     } else {
         $_SESSION['Submit'] = "All fields are required!";
+        echo $_SESSION['Submit'];
     }
 }

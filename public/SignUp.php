@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+session_start();
+require("./handlers/Connection.php");
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -76,6 +80,7 @@
         }
     </style>
 </head>
+
 <body class="overflow-hidden bg-gradient-to-br from-black via-DarkBackGround to-DarkForestGreen text-VeryLightGray bg-no-repeat h-screen infinite-gradient">
     <nav class="bg-DarkGray shadow-2xl  border-b-2 border-b-VeryLightGray">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -130,8 +135,25 @@
                     </span>
                 </div>
             </div>
+            <div class="mb-4">
+                <label>
+                    <input type="radio" name="participation_type" value="individual" required>
+                    Individual
+                </label>
+                <label>
+                    <input type="radio" name="participation_type" value="team" required>
+                    Team
+                </label>
+                <input type="submit" value="Register">
+            </div>
             <!-- Submit Button -->
             <div class="flex flex-col sm:flex-row gap-5 items-center justify-start mt-4">
+                <?php if (isset($_SESSION['Submit'])): ?>
+                    <?php
+                    echo $_SESSION['Submit'];
+                    session_unset();
+                    ?>
+                <?php endif ?>
                 <!-- Sign Up Button -->
                 <button type="submit" class="border-VeryLightGray border-2 text-VeryLightGray py-2 px-6 rounded-lg hover:scale-95 hover:bg-VeryLightGray hover:text-DarkBackGround transition-all shadow-md hover:shadow-lg">
                     Sign Up

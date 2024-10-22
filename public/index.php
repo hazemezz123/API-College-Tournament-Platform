@@ -23,7 +23,7 @@ include("./handlers/Connection.php");
 
         .infinite-gradient {
             background-size: 150% 150%;
-            animation: gradientScroll 20s ease-in-out infinite;
+            animation: gradientScroll 5s ease-in-out infinite;
         }
     </style>
     </style>
@@ -62,9 +62,10 @@ include("./handlers/Connection.php");
             <!-- email Input -->
             <div class="mb-4">
                 <label for="password" class="block text-SoftGray pb-2">email</label>
-                <input autocomplete="FALSE" type="email" id="email" name="email" required class="border rounded w-full py-2 px-3 bg-DarkGray text-VeryLightGray focus:ring-4 focus:ring-VeryLightGray focus:ring-opacity-50 focus:outline-none transition-all">
+                <input autocomplete="FALSE" type="email" id="email" name="email" required class=" 
+                border rounded w-full py-2 px-3 bg-DarkGray text-VeryLightGray focus:ring-4 focus:ring-VeryLightGray focus:ring-opacity-50 focus:outline-none transition-all">
                 <?php if (isset($_SESSION['error'])): ?>
-                    <div class="text-red-600 p-2">
+                    <div class="text-red-500 p-2">
                         <?php
                         echo $_SESSION['error'];
                         session_unset();
