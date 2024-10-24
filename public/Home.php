@@ -3,7 +3,7 @@
 <?php
 session_start();
 include("./handlers/Connection.php");
-
+$_SESSION
 ?>
 
 <head>

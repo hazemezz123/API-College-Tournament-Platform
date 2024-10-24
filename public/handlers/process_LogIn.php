@@ -35,6 +35,7 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["emai
                 $_SESSION['username'] = $username;
                 $_SESSION['email'] = $email;
                 $_SESSION['logged_in'] = true;
+                setcookie("user_id", $id, time() + (86400 * 30), "/");
                 header("Location: ../Home.php");
                 exit();
             } else {

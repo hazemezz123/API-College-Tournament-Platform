@@ -2,3 +2,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.result_container {
+  max-width: 700px;
+  margin: 15px auto;
+  background-color: #121c2b;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: #e5e7eb;
+}

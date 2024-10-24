@@ -126,8 +126,8 @@ $result = $conn->query($sql);
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <a href="../../El e2tmad/public/Home.php">
                 <div class="flex space-x-4 justify-center items-center">
-                    <img src="../assets/img/API (2).png" class=" w-20 border-r-2 pr-2" alt="School Logo">
-                    <p class="text-white font-bold ">API Collage</p>
+                    <img src="../assets/img/API (2).png" class=" w-24 border-r-2 pr-2" alt="School Logo">
+                    <p class="text-white font-bold text-2xl">API</p>
                 </div>
             </a>
         </div>
