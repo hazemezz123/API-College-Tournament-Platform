@@ -3,7 +3,7 @@
 <?php
 session_start();
 include("./handlers/Connection.php");
-$_SESSION
+
 ?>
 
 <head>
@@ -11,6 +11,7 @@ $_SESSION
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <link rel="stylesheet" href="build.css">
+    <link rel="stylesheet" href="../src/styles.css">
     <style>
         @keyframes gradientScroll {
             0% {
@@ -59,16 +60,167 @@ $_SESSION
             <br>
             For The Intelligence
         </header>
-
-        <section class="grid grid-cols-3 mt-20 mx-20 gap-5">
-            <div class="border-2 border-VeryLightGray text-VeryLightGray p-2">
-                <h1 class="text-2xl m-2 mt-4">Programming Solving:</h1>
-                <p class="p-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis error assumenda voluptatem.</p>
-                <div class="space-x-2.5 m-2">
-                    <a href="../../El e2tmad/public/Quiz_Programming.php">
-                        <button class="px-4 py-2 bg-transparent rounded text-VeryLightGray border-2 border-VeryLightGray hover:bg-VeryLightGray hover:text-DarkBackGround transition-all hover:scale-95">Start Now</button>
-                    </a>
-                    <button class="px-4 py-2 bg-VeryLightGray rounded text-DarkBackGround  border-2 hover:bg-transparent hover:text-VeryLightGray transition-all hover:scale-95">More information</button>
+        <section class="grid grid-cols-3 my-20 mx-20 gap-5 max-md:flex max-md:flex-col">
+            <!-- PHP quiz Section -->
+            <div class="max-w-sm bg-white dark:bg-gray-800 border-2 border-gray-300 transition-all dark:border-gray-700 rounded-lg shadow-lg   border-transparent  hover:border-2 hover:border-gray-300 hover:shadow-2xl relative">
+                <a href="#" class="flex justify-center items-center p-5">
+                    <img class="rounded-lg w-40 h-40 object-contain rotate-php" src="../assets/Img/php.png" alt="PHP Quiz" />
+                </a>
+                <hr>
+                <div class="p-6 flex flex-col justify-between">
+                    <div>
+                        <h5 class="mb-2 text-2xl md:text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">PHP Quiz</h5>
+                        <p class="mb-4 text-sm font-medium text-gray-700 dark:text-gray-400">Test your fundamental knowledge of PHP programming. This quiz covers basic syntax, functions, and more.</p>
+                    </div>
+                    <ul class="mb-4 text-sm text-gray-700 dark:text-gray-400">
+                        <li><span class="font-semibold">Total Questions:</span> 10</li>
+                        <li><span class="font-semibold">Estimated Time:</span> 10-15 minutes</li>
+                        <li><span class="font-semibold">Difficulty Level:</span> Beginner</li>
+                    </ul>
+                    <figure class="flex items-center justify-between">
+                        <a href="../../El e2tmad/public/Quiz_php.php?question_Type=php" class="group inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 transition-all">
+                            Take Quiz
+                            <svg class="w-4 h-4 ml-2 rtl:rotate-180 group-hover:translate-x-1 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                            </svg>
+                        </a>
+                        <p class="text-gray-900 dark:text-white font-bold text-lg">Points: 10</p>
+                    </figure>
+                </div>
+            </div>
+            <!-- Html Quiz Section -->
+            <div class="max-w-sm bg-white dark:bg-gray-800 border-2 border-gray-300 transition-all dark:border-gray-700 rounded-lg shadow-lg   border-transparent  hover:border-2 hover:border-gray-300 hover:shadow-2xl">
+                <a href="#" class="flex justify-center items-center p-5">
+                    <img class="rounded-lg w-40 h-40 object-contain" src="../assets/Img/html.png" alt="PHP Quiz" />
+                </a>
+                <hr>
+                <div class="p-6 flex flex-col justify-between">
+                    <div>
+                        <h5 class="mb-2 text-2xl md:text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">HTML Quiz</h5>
+                        <p class="mb-4 text-sm font-medium text-gray-700 dark:text-gray-400">Test your knowledge of HTML basics, including structure, elements, and attributes. Perfect for beginners and those looking to refresh their skills!</p>
+                    </div>
+                    <ul class="mb-4 text-sm text-gray-700 dark:text-gray-400">
+                        <li><span class="font-semibold">Total Questions:</span> 10</li>
+                        <li><span class="font-semibold">Estimated Time:</span> 10-15 minutes</li>
+                        <li><span class="font-semibold">Difficulty Level:</span> Beginner</li>
+                    </ul>
+                    <figure class="flex items-center justify-between">
+                        <a href="../../El e2tmad/public/Quiz_php.php?question_Type=html" class="group inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 transition-all">
+                            Take Quiz
+                            <svg class="w-4 h-4 ml-2 rtl:rotate-180 group-hover:translate-x-1 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                            </svg>
+                        </a>
+                        <p class="text-gray-900 dark:text-white font-bold text-lg">Points: 10</p>
+                    </figure>
+                </div>
+            </div>
+            <!-- Msql Quiz -->
+            <div class="max-w-sm bg-white dark:bg-gray-800 border-2 border-gray-300 transition-all dark:border-gray-700 rounded-lg shadow-lg   border-transparent  hover:border-2 hover:border-gray-300 hover:shadow-2xl">
+                <a href="#" class="flex justify-center items-center p-5">
+                    <img class="rounded-lg w-40 h-40 object-contain" src="../assets/Img/language.png" alt="PHP Quiz" />
+                </a>
+                <hr>
+                <div class="p-6 flex flex-col justify-between">
+                    <div>
+                        <h5 class="mb-2 text-2xl md:text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">MySQL Quiz</h5>
+                        <p class="mb-4 text-sm font-medium text-gray-700 dark:text-gray-400">Test your knowledge of MySQL fundamentals, including queries, databases, and table management.</p>
+                    </div>
+                    <ul class="mb-4 text-sm text-gray-700 dark:text-gray-400">
+                        <li><span class="font-semibold">Total Questions:</span> 10</li>
+                        <li><span class="font-semibold">Estimated Time:</span> 10-15 minutes</li>
+                        <li><span class="font-semibold">Difficulty Level:</span> Beginner</li>
+                    </ul>
+                    <figure class="flex items-center justify-between">
+                        <a href="../../El e2tmad/public/Quiz_php.php?question_Type=mysql" class="group inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 transition-all">
+                            Take Quiz
+                            <svg class="w-4 h-4 ml-2 rtl:rotate-180 group-hover:translate-x-1 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                            </svg>
+                        </a>
+                        <p class="text-gray-900 dark:text-white font-bold text-lg">Points: 10</p>
+                    </figure>
+                </div>
+            </div>
+            <!-- React.js quiz -->
+            <div class="max-w-sm bg-white dark:bg-gray-800 border-2 border-gray-300 transition-all dark:border-gray-700 rounded-lg shadow-lg   border-transparent  hover:border-2 hover:border-gray-300 hover:shadow-2xl">
+                <a href="#" class="flex justify-center items-center p-5">
+                    <img class="rounded-lg w-40 h-40 object-contain rotate-animation" src="../assets/Img/structure.png" alt="PHP Quiz" />
+                </a>
+                <hr>
+                <div class="p-6 flex flex-col justify-between">
+                    <div>
+                        <h5 class="mb-2 text-2xl md:text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">React.js Quiz</h5>
+                        <p class="mb-4 text-sm font-medium text-gray-700 dark:text-gray-400">Test your knowledge of React.js basics, including components, state management, React-Props , and hooks.</p>
+                    </div>
+                    <ul class="mb-4 text-sm text-gray-700 dark:text-gray-400">
+                        <li><span class="font-semibold">Total Questions:</span> 10</li>
+                        <li><span class="font-semibold">Estimated Time:</span> 10-15 minutes</li>
+                        <li><span class="font-semibold">Difficulty Level:</span> Beginner</li>
+                    </ul>
+                    <figure class="flex items-center justify-between">
+                        <a href="../../El e2tmad/public/Quiz_php.php?question_Type=react.js" class="group inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 transition-all">
+                            Take Quiz
+                            <svg class="w-4 h-4 ml-2 rtl:rotate-180 group-hover:translate-x-1 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                            </svg>
+                        </a>
+                        <p class="text-gray-900 dark:text-white font-bold text-lg">Points: 10</p>
+                    </figure>
+                </div>
+            </div>
+            <!-- Css quiz -->
+            <div class="max-w-sm bg-white dark:bg-gray-800 border-2 border-gray-300 transition-all dark:border-gray-700 rounded-lg shadow-lg   border-transparent  hover:border-2 hover:border-gray-300 hover:shadow-2xl">
+                <a href="#" class="flex justify-center items-center p-5">
+                    <img class="rounded-lg w-40 h-40 object-contain" src="../assets/Img/css-3.png" alt="PHP Quiz" />
+                </a>
+                <hr>
+                <div class="p-6 flex flex-col justify-between">
+                    <div>
+                        <h5 class="mb-2 text-2xl md:text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">CSS Quiz</h5>
+                        <p class="mb-4 text-sm font-medium text-gray-700 dark:text-gray-400">Test your knowledge of CSS fundamentals, including selectors, properties, and layout techniques.</p>
+                    </div>
+                    <ul class="mb-4 text-sm text-gray-700 dark:text-gray-400">
+                        <li><span class="font-semibold">Total Questions:</span> 10</li>
+                        <li><span class="font-semibold">Estimated Time:</span> 10-15 minutes</li>
+                        <li><span class="font-semibold">Difficulty Level:</span> Beginner</li>
+                    </ul>
+                    <figure class="flex items-center justify-between">
+                        <a href="../../El e2tmad/public/Quiz_php.php?question_Type=css" class="group inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 transition-all">
+                            Take Quiz
+                            <svg class="w-4 h-4 ml-2 rtl:rotate-180 group-hover:translate-x-1 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                            </svg>
+                        </a>
+                        <p class="text-gray-900 dark:text-white font-bold text-lg">Points: 10</p>
+                    </figure>
+                </div>
+            </div>
+            <!-- Python quiz -->
+            <div class="max-w-sm bg-white dark:bg-gray-800 border-2 border-gray-300 transition-all dark:border-gray-700 rounded-lg shadow-lg   border-transparent  hover:border-2 hover:border-gray-300 hover:shadow-2xl">
+                <a href="#" class="flex justify-center items-center p-5 rotate-animation">
+                    <img class="rounded-lg w-40 h-40 object-contain " src="../assets/Img/python.png" alt="PHP Quiz" />
+                </a>
+                <hr>
+                <div class="p-6 flex flex-col justify-between">
+                    <div>
+                        <h5 class="mb-2 text-2xl md:text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">Python Quiz</h5>
+                        <p class="mb-4 text-sm font-medium text-gray-700 dark:text-gray-400">Test your knowledge of Python basics, including syntax, data types, loops , Operators , RegEx, and functions.</p>
+                    </div>
+                    <ul class="mb-4 text-sm text-gray-700 dark:text-gray-400">
+                        <li><span class="font-semibold">Total Questions:</span> 10</li>
+                        <li><span class="font-semibold">Estimated Time:</span> 10-15 minutes</li>
+                        <li><span class="font-semibold">Difficulty Level:</span> Beginner</li>
+                    </ul>
+                    <figure class="flex items-center justify-between">
+                        <a href="../../El e2tmad/public/Quiz_php.php?question_Type=python" class="group inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 transition-all">
+                            Take Quiz
+                            <svg class="w-4 h-4 ml-2 rtl:rotate-180 group-hover:translate-x-1 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                            </svg>
+                        </a>
+                        <p class="text-gray-900 dark:text-white font-bold text-lg">Points: 10</p>
+                    </figure>
                 </div>
             </div>
         </section>

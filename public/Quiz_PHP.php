@@ -4,9 +4,12 @@
 session_start();
 require("./handlers/Connection.php");
 
-// Fetch all questions for displaying in the form
-$sql = "SELECT * FROM questions";
-$result = $conn->query($sql);
+if (isset($_GET['question_Type'])) {
+    $QuestionType = $_GET['question_Type'];
+    $sql = "SELECT * FROM questions WHERE question_Type = '$QuestionType'";
+    $result = $conn->query($sql);
+}
+
 ?>
 
 <head>
@@ -136,35 +139,36 @@ $result = $conn->query($sql);
     <!-- Quiz Form Section -->
     <section class="h-full flex justify-center items-center">
         <div class="form-container border-gray-500 border-2">
-            <h1 class="form-title">PHP Quiz Form</h1>
-            <form action="./handlers/result.php" method="POST">
-                <?php if ($result->num_rows > 0) { ?>
-                    <?php while ($row = $result->fetch_assoc()) { ?>
+            <h1 class="form-title"><?php echo $QuestionType ?> quiz</h1>
+            <?php if ($result->num_rows > 0) { ?>
+                <?php while ($row = $result->fetch_assoc()) { ?>
+                    <form action="./handlers/result.php" method="POST">
                         <div class="form-question">
                             <h3 class="text-gray-200 font-bold mb-5"><?php echo $row['question']; ?></h3>
                             <div class="form-radio-group">
-                                <input required id="radio-<?php echo $row['id']; ?>-1" type="radio" name="answer<?php echo $row['id']; ?>" value="option1">
+                                <input required id="radio-<?php echo $row['id']; ?>-1" type="radio" name="answer<?php echo $row['id']; ?>" value="<?php echo htmlspecialchars($row['option1']); ?>">
                                 <label for="radio-<?php echo $row['id']; ?>-1" class="form-radio-label"><?php echo htmlspecialchars($row['option1']); ?></label>
                             </div>
                             <div class="form-radio-group">
-                                <input required id="radio-<?php echo $row['id']; ?>-2" type="radio" name="answer<?php echo $row['id']; ?>" value="option2">
+                                <input required id="radio-<?php echo $row['id']; ?>-2" type="radio" name="answer<?php echo $row['id']; ?>" value="<?php echo htmlspecialchars($row['option2']); ?>">
                                 <label for="radio-<?php echo $row['id']; ?>-2" class="form-radio-label"><?php echo htmlspecialchars($row['option2']); ?></label>
                             </div>
                             <div class="form-radio-group">
-                                <input required id="radio-<?php echo $row['id']; ?>-3" type="radio" name="answer<?php echo $row['id']; ?>" value="option3">
+                                <input required id="radio-<?php echo $row['id']; ?>-3" type="radio" name="answer<?php echo $row['id']; ?>" value="<?php echo htmlspecialchars($row['option3']); ?>">
                                 <label for="radio-<?php echo $row['id']; ?>-3" class="form-radio-label"><?php echo $row['option3']; ?></label>
                             </div>
                             <div class="form-radio-group">
-                                <input required id="radio-<?php echo $row['id']; ?>-4" type="radio" name="answer<?php echo $row['id']; ?>" value="option4">
+                                <input required id="radio-<?php echo $row['id']; ?>-4" type="radio" name="answer<?php echo $row['id']; ?>" value="<?php echo htmlspecialchars($row['option4']); ?>">
                                 <label for="radio-<?php echo $row['id']; ?>-4" class="form-radio-label"><?php echo $row['option4']; ?></label>
                             </div>
                         </div>
                     <?php } ?>
+                    <input type="hidden" name="question_Type" value="<?php echo $QuestionType; ?>">
                     <input type="submit" class="form-submit" value="Submit Quiz">
                 <?php } else { ?>
                     <p>No questions available.</p>
                 <?php } ?>
-            </form>
+                    </form>
         </div>
     </section>
 </body>

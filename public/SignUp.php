@@ -11,41 +11,8 @@ require("./handlers/Connection.php");
     <title>Document</title>
     <link rel="stylesheet" href="build.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="../src/styles.css">
     <style>
-        /* Green Neon Glowing Box Style */
-        .green-glowing-box {
-            background-color: #1e1e1e;
-            /* Dark background for contrast */
-            border-radius: 10px;
-            /* Initial green neon glow */
-            box-shadow: 0 0 20px rgba(0, 255, 100, 0.4),
-                0 0 40px rgba(0, 255, 150, 0.5),
-                0 0 60px rgba(0, 255, 200, 0.6);
-            /* Animation */
-            animation: greenNeonGlow 4s infinite alternate;
-        }
-
-        /* Green Neon Glow Animation */
-        @keyframes greenNeonGlow {
-            0% {
-                box-shadow: 0 0 20px rgba(0, 255, 100, 0.4),
-                    0 0 40px rgba(0, 255, 150, 0.5),
-                    0 0 60px rgba(0, 255, 200, 0.6);
-            }
-
-            50% {
-                box-shadow: 0 0 20px rgba(0, 255, 150, 0.5),
-                    0 0 40px rgba(0, 255, 200, 0.6),
-                    0 0 60px rgba(0, 255, 255, 0.7);
-            }
-
-            100% {
-                box-shadow: 0 0 20px rgba(0, 255, 50, 0.4),
-                    0 0 40px rgba(0, 255, 100, 0.5),
-                    0 0 60px rgba(0, 255, 150, 0.6);
-            }
-        }
-
         label {
             text-transform: capitalize;
         }
@@ -135,16 +102,15 @@ require("./handlers/Connection.php");
                     </span>
                 </div>
             </div>
-            <div class="mb-4">
-                <label>
+            <div class="my-4 flex gap-5">
+                <div class="flex justify-center items-center">
                     <input type="radio" name="participation_type" value="individual" required>
-                    Individual
-                </label>
-                <label>
+                    individual
+                </div>
+                <div class="flex justify-center items-center">
                     <input type="radio" name="participation_type" value="team" required>
-                    Team
-                </label>
-                <input type="submit" value="Register">
+                    team
+                </div>
             </div>
             <!-- Submit Button -->
             <div class="flex flex-col sm:flex-row gap-5 items-center justify-start mt-4">
