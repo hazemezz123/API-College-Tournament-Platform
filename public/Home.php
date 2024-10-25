@@ -3,6 +3,7 @@
 <?php
 session_start();
 include("./handlers/Connection.php");
+checkUserLoggedIn();
 
 ?>
 
@@ -35,16 +36,18 @@ include("./handlers/Connection.php");
 </head>
 
 <body class="bg-DarkBackGround">
-    <nav class="bg-DarkGray shadow-2xl border-b-VeryLightGray">
+    <nav class="bg-DarkGray shadow-2xl border-b-white ">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <a href="../../El e2tmad/public/Home.php">
                 <div class="flex space-x-4 justify-center items-center">
-                    <img src="../assets/img/school.png" class="w-14" alt="School Logo">
-                    <p class="text-VeryLightGray font-bold">Student_Tournament</p>
+                    <img src="../assets/img/API (2).png" class=" w-24 border-r-2 pr-2" alt="School Logo">
+                    <p class="text-white font-bold text-2xl">API</p>
                 </div>
             </a>
-
-            <div class="space-x-7">
+            <div class="space-x-7 flex justify-center items-center">
+                <a href="Profile.php">
+                    <img src="../assets/Img/user.png" class="w-10" alt="">
+                </a>
                 <a href="index.php" class=" text-VeryLightGray">
                     <button class="border-2 px-3 py-2 rounded-lg border-LightGray hover:border-gray-400 transition-all">login</button>
                 </a>

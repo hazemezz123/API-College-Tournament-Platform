@@ -3,6 +3,7 @@
 <?php
 session_start();
 require("./handlers/Connection.php");
+checkUserLoggedIn();
 
 if (isset($_GET['question_Type'])) {
     $QuestionType = $_GET['question_Type'];

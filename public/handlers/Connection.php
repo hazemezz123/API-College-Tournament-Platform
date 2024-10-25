@@ -7,3 +7,10 @@ function Validate($data)
     $data = htmlspecialchars($data);
     return $data;
 }
+function checkUserLoggedIn()
+{
+    if (!isset($_COOKIE['user_id'])) {
+        header("Location: ../public/index.php");
+        exit();
+    }
+}

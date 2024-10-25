@@ -1,6 +1,8 @@
 <?php
 session_start();
 include("./Connection.php");
+checkUserLoggedIn();
+$user_id = $_COOKIE['user_id'];
 $quizType = $_POST['question_Type'];
 $sql = "SELECT id, correct_answer FROM questions WHERE question_Type = '$quizType'";
 $result = $conn->query($sql);
@@ -27,20 +29,25 @@ while ($row = $result->fetch_assoc()) {
 
 $_SESSION['result'] = "$score / $total_questions";
 $_SESSION['score'] = $score;
-
+$sql_1 = "SELECT score   FROM quiz_scores WHERE user_id = $user_id ";
+$result = mysqli_query($conn, $sql_1);
+while ($row = $result->fetch_assoc()) {
+    $last_Score =  $row['score'];
+}
 if (isset($_COOKIE['user_id'])) {
-    $user_id = $_COOKIE['user_id'];
     $stmt = $conn->prepare("SELECT * FROM quiz_scores WHERE user_id = ? AND quiz_type = ?  ");
     $stmt->bind_param('is', $user_id, $quizType);
     $stmt->execute();
     $result = $stmt->get_result();
     if ($result->num_rows > 0) {
-        $update_sql = "UPDATE quiz_scores SET score = ? , quiz_date = CURRENT_TIMESTAMP   WHERE user_id = ? AND quiz_type = ?";
-        $stmt_update_sql = $conn->prepare($update_sql);
-        $stmt_update_sql->bind_param("iis", $score, $user_id, $quizType);
-        $stmt_update_sql->execute();
-        $stmt_update_sql->close();
-        $conn->close();
+        if ($score > $last_Score) {
+            $update_sql = "UPDATE quiz_scores SET score = ? , quiz_date = CURRENT_TIMESTAMP   WHERE user_id = ? AND quiz_type = ?";
+            $stmt_update_sql = $conn->prepare($update_sql);
+            $stmt_update_sql->bind_param("iis", $score, $user_id, $quizType);
+            $stmt_update_sql->execute();
+            $stmt_update_sql->close();
+            $conn->close();
+        }
     } else {
         $stmt = $conn->prepare("INSERT INTO quiz_scores (user_id, score, quiz_type) VALUES (?, ?, ?)");
         $stmt->bind_param('iis', $user_id, $score, $quizType);
@@ -48,6 +55,7 @@ if (isset($_COOKIE['user_id'])) {
         $stmt->close();
         $conn->close();
     }
+    $conn->close();
 }
 ?>
 <!DOCTYPE html>
@@ -72,18 +80,25 @@ if (isset($_COOKIE['user_id'])) {
             </a>
         </div>
     </nav>
-    <div class="Container result_container">
-        <h1 class="font-bold text-4xl p-2">
-            Your Score is : <?php echo $_SESSION['result']; ?>
+    <div class="container mx-auto mt-10 p-8 bg-gray-900 text-center rounded-lg shadow-lg">
+        <h1 class="font-bold text-5xl text-white mb-4">
+            Your Score:
         </h1>
-        <hr>
-        <h1 class="font-bold text-4xl p-2">
-            <?php echo $_SESSION['result_score'];  ?>
-        </h1>
-        <a href="../Home.php" class="text-lg border-2 px-4 py-2 m-2 bg-[#283f63]">
-            back To home page
+        <div class="text-6xl font-extrabold text-[#4CAF50] mb-6">
+            <?php echo $_SESSION['result']; ?>
+        </div>
+        <hr class="border-gray-700 my-4">
+        <h2 class="text-3xl font-semibold text-gray-300 mb-6">
+            <?php echo $_SESSION['result_score']; ?>
+        </h2>
+        <a href="../Home.php"
+            class="inline-block text-lg font-semibold px-8 py-3 mt-8 bg-[#283f63] text-white rounded-lg 
+               hover:bg-[#1e3250] hover:border-gray-400 border-2 border-transparent shadow-lg 
+               transition-all duration-200 ease-in-out">
+            Back to Home Page
         </a>
     </div>
+
 </body>
 
 </html>

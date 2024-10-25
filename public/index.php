@@ -81,26 +81,30 @@ include("./handlers/Connection.php");
                 </button>
                 <!-- Sign-up Link -->
                 <span class="text-VeryLightGray">
-                    Create an <a href="SignUp.php" class="text-blue-500 underline hover:text-blue-300 transition-all">new account</a>
+                    Don't Have an
+                    Account ?.. <a href="SignUp.php" class="text-blue-500 underline hover:text-blue-300 transition-all">Create account</a>
                 </span>
             </div>
         </form>
         <!-- Student Tournament Section -->
-        <div class="container mx-auto mt-10 p-6 rounded-lg shadow-md bg-DarkBackGround flex justify-between flex-col">
+        <div class="container mx-auto mt-10 p-6 rounded-lg shadow-md bg-DarkBackGround flex flex-col justify-between max-w-lg">
+            <!-- Content Section -->
             <div>
                 <h2 class="text-2xl font-bold mb-4 text-VeryLightGray">About the Student Tournament</h2>
-                <p class="text-SoftGray mb-4">
+                <p class="text-SoftGray mb-5">
                     Join the exciting Student Tournament where students from various schools compete in sports, academics, and arts!
                     Stay tuned for the next tournament dates and events. Winners will receive special recognition and prizes!
                 </p>
             </div>
-            <div class="mb-4.5">
-                <a href="tournament_details.php" class="border-VeryLightGray border-2 text-VeryLightGray py-2 px-4  rounded hover:scale-95 transition-all hover:bg-VeryLightGray hover:text-DarkBackGround">
+            <!-- Button Section -->
+            <div class="flex justify-start">
+                <a href="tournament_details.php" aria-label="Learn more about the Student Tournament"
+                    class="border-2 border-VeryLightGray text-VeryLightGray py-2 px-4 rounded-lg hover:scale-95 transition-transform hover:bg-VeryLightGray hover:text-DarkBackGround shadow-md">
                     Learn More
                 </a>
             </div>
-
         </div>
+
     </div>
 
 </body>
