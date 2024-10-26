@@ -55,7 +55,6 @@ if (isset($_COOKIE['user_id'])) {
         $stmt->close();
         $conn->close();
     }
-    $conn->close();
 }
 ?>
 <!DOCTYPE html>

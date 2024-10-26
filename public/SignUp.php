@@ -53,14 +53,14 @@ require("./handlers/Connection.php");
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <a href="../../El e2tmad/public/Home.php">
                 <div class="flex space-x-4 justify-center items-center">
-                    <img src="../assets/Img/school.png" class="w-14" alt="School Logo">
-                    <p class="text-VeryLightGray font-bold">Student_Tournament</p>
+                    <img src="../assets/img/API (2).png" class=" w-24 border-r-2 pr-2" alt="School Logo">
+                    <p class="text-white font-bold text-2xl">API</p>
                 </div>
             </a>
         </div>
     </nav>
-    <main class="h-[calc(100vh-89px)] flex justify-center items-center w-full">
-        <form action="handlers/process_SignUp.php" method="POST" class="p-6 rounded-lg shadow-md bg-BlackOlive green-glowing-box" style="width: 50%;">
+    <main class=" flex justify-center items-center w-full">
+        <form action="handlers/process_SignUp.php" method="POST" class="p-6 w-[600px] mt-10 rounded-lg shadow-md bg-BlackOlive green-glowing-box">
             <h2 class="text-2xl font-bold mb-4 text-VeryLightGray">Create a new Account</h2>
             <!-- Username Input -->
             <div class="mb-4">
@@ -105,11 +105,15 @@ require("./handlers/Connection.php");
             <div class="my-4 flex gap-5">
                 <div class="flex justify-center items-center">
                     <input type="radio" name="participation_type" value="individual" required>
-                    individual
+                    <span class="pointer-events-none cursor-not-allowed ">
+                        individual
+                    </span>
                 </div>
                 <div class="flex justify-center items-center">
                     <input type="radio" name="participation_type" value="team" required>
-                    team
+                    <span class="pointer-events-none cursor-not-allowed ">
+                        team
+                    </span>
                 </div>
             </div>
             <!-- Submit Button -->

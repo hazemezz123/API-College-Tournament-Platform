@@ -35,9 +35,9 @@ checkUserLoggedIn();
     </style>
 </head>
 
-<body class="bg-DarkBackGround">
-    <nav class="bg-DarkGray shadow-2xl border-b-white ">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+<body class="bg-[#111827]">
+    <nav class="bg-gray-900 shadow-2xl border-b ">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center ">
             <a href="../../El e2tmad/public/Home.php">
                 <div class="flex space-x-4 justify-center items-center">
                     <img src="../assets/img/API (2).png" class=" w-24 border-r-2 pr-2" alt="School Logo">
@@ -49,7 +49,7 @@ checkUserLoggedIn();
                     <img src="../assets/Img/user.png" class="w-10" alt="">
                 </a>
                 <a href="index.php" class=" text-VeryLightGray">
-                    <button class="border-2 px-3 py-2 rounded-lg border-LightGray hover:border-gray-400 transition-all">login</button>
+                    <button class="border-2 px-3 py-2 rounded-lg border-LightGray hover:border-gray-400 transition-all">Login</button>
                 </a>
                 <a href="SignUp.php" class=" text-VeryLightGray">
                     <button class="border-2 px-3 py-2 rounded-lg border-LightGray hover:border-gray-400 transition-all">Sign-Up</button>
@@ -58,10 +58,10 @@ checkUserLoggedIn();
         </div>
     </nav>
     <div>
-        <header class="text-center uppercase font-extrabold text-5xl text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-500 mt-14 leading-relaxed shadow-lg">
+        <header class="text-center uppercase font-extrabold text-5xl text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-500 mt-14 leading-relaxed ">
             Welcome to the Student Tournament
             <br>
-            For The Intelligence
+            For The Intelligence Programmers
         </header>
         <section class="grid grid-cols-3 my-20 mx-20 gap-5 max-md:flex max-md:flex-col">
             <!-- PHP quiz Section -->
@@ -228,6 +228,32 @@ checkUserLoggedIn();
             </div>
         </section>
     </div>
+    <footer class="bg-white rounded-lg  dark:bg-gray-900 m-4  shadow-white ">
+        <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <a href="https://flowbite.com/" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                    <img src="../assets/Img/API (2).png" class="h-20" alt="Api Collage" />
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Api Collage</span>
+                </a>
+                <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+                    <li>
+                        <a href="./index.php" class="hover:underline me-4 md:me-6">Login</a>
+                    </li>
+                    <li>
+                        <a href="./SignUp.php" class="hover:underline me-4 md:me-6 ">SignUp</a>
+                    </li>
+                    <li>
+                        <a href="./tournament_details.php" class="hover:underline me-4 md:me-6 capitalize">tournament details</a>
+                    </li>
+                    <li>
+                        <a href="#" class="hover:underline">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+            <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a href="#" class="hover:underline">Api Collage</a>. All Rights Reserved.</span>
+        </div>
+    </footer>
 </body>
 
 </html>

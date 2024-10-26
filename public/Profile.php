@@ -7,6 +7,8 @@ if (isset($_COOKIE['user_id'])) {
     $user_id = $_COOKIE['user_id'];
     $stmt = "SELECT username , email , age FROM users WHERE id = '$user_id' ";
     $result = mysqli_query($conn, $stmt);
+    $stmt_1 = "SELECT score, quiz_type, quiz_date FROM quiz_scores WHERE user_id = '$user_id'";
+    $result_1 = mysqli_query($conn, $stmt_1);
 } else {
     $_SESSION['MakeAccount'] = "Login First To show Your Information";
 }
@@ -22,7 +24,7 @@ if (isset($_COOKIE['user_id'])) {
 
 <body class="bg-gray-900 min-h-screen flex flex-col items-center">
     <!-- Navbar -->
-    <nav class="bg-DarkGray shadow-2xl border-b border-VeryLightGray w-full">
+    <nav class="bg-gray-900 shadow-2xl border-b border-VeryLightGray w-full">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <a href="../../El e2tmad/public/Home.php">
                 <div class="flex space-x-4 items-center">
@@ -44,7 +46,7 @@ if (isset($_COOKIE['user_id'])) {
         </div>
     </nav>
     <?php if (!isset($_SESSION['$MakeAccount'])): ?>
-        <div class="bg-DarkGray mt-12 p-6 rounded-lg shadow-lg w-full max-w-md text-white text-center">
+        <div class="bg-gray-800 mt-12 p-6 rounded-lg shadow-lg w-full max-w-md text-white text-center">
             <div class="flex justify-center">
                 <img src="../assets/Img/user.png" alt="User Profile" class="w-24 h-24 rounded-full border-2 border-white">
             </div>
@@ -59,6 +61,38 @@ if (isset($_COOKIE['user_id'])) {
                 <a href="./handlers/editProfile.php" class="bg-blue-500 text-white px-4 py-2 rounded-lg transition duration-300 hover:bg-blue-600">Edit Profile</a>
                 <a href="./handlers/Logout.php" class="bg-blue-500 text-white px-4 py-2 rounded-lg transition duration-300 hover:bg-blue-600">Log out</a>
             </div>
+        </div>
+        <div class="relative overflow-x-auto">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400  mt-5">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 text-center">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            quiz_type
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            score
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            quiz_date
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($row_1 = $result_1->fetch_assoc()): ?>
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">
+                            <th scope=" row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <?php echo $row_1['quiz_type'] ?>
+                            </th>
+                            <td class="px-6 py-4">
+                                <?php echo $row_1['score'] ?>
+                            </td>
+                            <td class="px-6 py-4">
+                                <?php echo $row_1['quiz_date'] ?>
+                            </td>
+                        </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
         </div>
     <?php endif ?>
 </body>
