@@ -141,8 +141,8 @@ if (isset($_GET['question_Type'])) {
     <section class="h-full flex justify-center items-center">
         <div class="form-container border-gray-500 border-2">
             <h1 class="form-title"><?php echo $QuestionType ?> quiz</h1>
-            <?php if ($result->num_rows > 0) { ?>
-                <?php while ($row = $result->fetch_assoc()) { ?>
+            <?php if ($result->num_rows > 0):  ?>
+                <?php while ($row = $result->fetch_assoc()) : ?>
                     <form action="./handlers/result.php" method="POST">
                         <div class="form-question">
                             <h3 class="text-gray-200 font-bold mb-5"><?php echo $row['question']; ?></h3>
@@ -163,12 +163,10 @@ if (isset($_GET['question_Type'])) {
                                 <label for="radio-<?php echo $row['id']; ?>-4" class="form-radio-label"><?php echo $row['option4']; ?></label>
                             </div>
                         </div>
-                    <?php } ?>
+                    <?php endwhile; ?>
                     <input type="hidden" name="question_Type" value="<?php echo $QuestionType; ?>">
                     <input type="submit" class="form-submit" value="Submit Quiz">
-                <?php } else { ?>
-                    <p>No questions available.</p>
-                <?php } ?>
+                <?php endif; ?>
                     </form>
         </div>
     </section>

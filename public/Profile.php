@@ -5,10 +5,14 @@ include("./handlers/Connection.php");
 checkUserLoggedIn();
 if (isset($_COOKIE['user_id'])) {
     $user_id = $_COOKIE['user_id'];
-    $stmt = "SELECT username , email , age FROM users WHERE id = '$user_id' ";
-    $result = mysqli_query($conn, $stmt);
+    $stmt = "SELECT username , email , age , id , membership_type , team_id FROM users WHERE id = '$user_id' ";
     $stmt_1 = "SELECT score, quiz_type, quiz_date FROM quiz_scores WHERE user_id = '$user_id'";
+    $stmt_2 = "SELECT sum(score) as User_Scores FROM quiz_scores WHERE user_id  = '$user_id'";
+    $result = mysqli_query($conn, $stmt);
     $result_1 = mysqli_query($conn, $stmt_1);
+    $result_2 = mysqli_query($conn, $stmt_2);
+    $row_2 = $result_2->fetch_assoc();
+    $user_scores = $row_2['User_Scores'] ? $row_2['User_Scores'] : 0; // Default to 0 if NULL
 } else {
     $_SESSION['MakeAccount'] = "Login First To show Your Information";
 }
@@ -22,7 +26,7 @@ if (isset($_COOKIE['user_id'])) {
     <link rel="stylesheet" href="../src/styles.css">
 </head>
 
-<body class="bg-gray-900 min-h-screen flex flex-col items-center">
+<body class="bg-gray-900  flex flex-col items-center">
     <!-- Navbar -->
     <nav class="bg-gray-900 shadow-2xl border-b border-VeryLightGray w-full">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -36,12 +40,6 @@ if (isset($_COOKIE['user_id'])) {
                 <a href="Profile.php">
                     <img src="../assets/Img/user.png" class="w-10" alt="User Profile">
                 </a>
-                <a href="index.php" class="text-VeryLightGray">
-                    <button class="border-2 px-3 py-2 rounded-lg border-LightGray hover:border-gray-400 transition-all">Login</button>
-                </a>
-                <a href="SignUp.php" class="text-VeryLightGray">
-                    <button class="border-2 px-3 py-2 rounded-lg border-LightGray hover:border-gray-400 transition-all">Sign-Up</button>
-                </a>
             </div>
         </div>
     </nav>
@@ -51,19 +49,25 @@ if (isset($_COOKIE['user_id'])) {
                 <img src="../assets/Img/user.png" alt="User Profile" class="w-24 h-24 rounded-full border-2 border-white">
             </div>
             <div class="mt-4">
-                <?php while ($row = $result->fetch_assoc()): ?>
+                <?php while ($row = $result->fetch_assoc()):  ?>
                     <h2 class="text-2xl font-bold"><?php echo $row['username'] ?></h2>
                     <p class="text-gray-400 mt-2">Email: <?php echo $row['email'] ?></p>
                     <p class="text-gray-400 mt-1">Age : <?php echo $row['age'] ?></p>
+                    <p class="text-gray-400 mt-1">id : <?php echo $row['id'] ?></p>
+                    <?php if ($row['membership_type'] == "team"): ?>
+                        <p class="text-gray-400 mt-1">Team : <?php echo $row['team_id'] ?></p>
+                    <?php endif ?>
+                    <p class="text-gray-400 mt-1">
+                    <p class="text-gray-400 mt-1">All Scores : <?php echo $user_scores; ?></p>
+                    </p>
                 <?php endwhile ?>
             </div>
-            <div class="flex justify-center space-x-4 mt-6">
-                <a href="./handlers/editProfile.php" class="bg-blue-500 text-white px-4 py-2 rounded-lg transition duration-300 hover:bg-blue-600">Edit Profile</a>
+            <div class="flex justify-center space-x-4 mt-4">
                 <a href="./handlers/Logout.php" class="bg-blue-500 text-white px-4 py-2 rounded-lg transition duration-300 hover:bg-blue-600">Log out</a>
             </div>
         </div>
         <div class="relative overflow-x-auto">
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400  mt-5">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400  my-5">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 text-center">
                     <tr>
                         <th scope="col" class="px-6 py-3">

@@ -7,35 +7,31 @@ session_start();
 include("../handlers/Connection.php");
 
 if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["email"])) {
-
-    // Sanitize inputs using a custom validation function (ensure Validate() function exists)
     $username = Validate($_POST["username"]);
     $password = Validate($_POST["password"]);
     $email = Validate($_POST["email"]);
-
-    // Prepared statement to select user data
-    $stmt = mysqli_prepare($conn, "SELECT id, username, Password FROM users WHERE email = ?");
+    $result_1 = mysqli_query($conn, "SELECT team_id FROM users WHERE email = '$email'");
+    $row_1 = $result_1->fetch_assoc();
+    $stmt = mysqli_prepare($conn, "SELECT id, username,  Password FROM users WHERE email = ?");
 
     if ($stmt) {
-        // Bind the email parameter
         mysqli_stmt_bind_param($stmt, "s", $email);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_store_result($stmt);
 
-        // Check if user with the given email exists
         if (mysqli_stmt_num_rows($stmt) > 0) {
-            // Bind the result columns
             mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
             mysqli_stmt_fetch($stmt);
 
             // Verify the password
             if (password_verify($password, $hashed_password)) {
-                // Successful login, set session variables
                 $_SESSION['user_id'] = $id;
                 $_SESSION['username'] = $username;
                 $_SESSION['email'] = $email;
                 $_SESSION['logged_in'] = true;
+                $team_id = $row_1['team_id'];
                 setcookie("user_id", $id, time() + (86400 * 30), "/");
+                setcookie("team_id", $team_id, time() + (86400 * 30), "/");
                 header("Location: ../Home.php");
                 exit();
             } else {

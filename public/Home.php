@@ -47,10 +47,7 @@ checkUserLoggedIn();
             <div class="space-x-7 flex justify-center items-center">
                 <a href="Profile.php">
                     <img src="../assets/Img/user.png" class="w-10" alt="">
-                </a>
-                <a href="index.php" class=" text-VeryLightGray">
-                    <button class="border-2 px-3 py-2 rounded-lg border-LightGray hover:border-gray-400 transition-all">Login</button>
-                </a>
+                </a>    
                 <a href="SignUp.php" class=" text-VeryLightGray">
                     <button class="border-2 px-3 py-2 rounded-lg border-LightGray hover:border-gray-400 transition-all">Sign-Up</button>
                 </a>
