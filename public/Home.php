@@ -38,7 +38,7 @@ checkUserLoggedIn();
 <body class="bg-[#111827]">
     <nav class="bg-gray-900 shadow-2xl border-b ">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center ">
-            <a href="../../El e2tmad/public/Home.php">
+            <a href="../../Tournament_Students/public/Home.php">
                 <div class="flex space-x-4 justify-center items-center">
                     <img src="../assets/img/API (2).png" class=" w-24 border-r-2 pr-2" alt="School Logo">
                     <p class="text-white font-bold text-2xl">API</p>
@@ -78,7 +78,7 @@ checkUserLoggedIn();
                         <li><span class="font-semibold">Difficulty Level:</span> Beginner</li>
                     </ul>
                     <figure class="flex items-center justify-between">
-                        <a href="../../El e2tmad/public/Quiz_php.php?question_Type=php" class="group inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 transition-all">
+                        <a href="../../Tournament_Students/public/Quiz_php.php?question_Type=php" class="group inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 transition-all">
                             Take Quiz
                             <svg class="w-4 h-4 ml-2 rtl:rotate-180 group-hover:translate-x-1 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
@@ -105,7 +105,7 @@ checkUserLoggedIn();
                         <li><span class="font-semibold">Difficulty Level:</span> Beginner</li>
                     </ul>
                     <figure class="flex items-center justify-between">
-                        <a href="../../El e2tmad/public/Quiz_php.php?question_Type=html" class="group inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 transition-all">
+                        <a href="../../Tournament_Students/public/Quiz_php.php?question_Type=html" class="group inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 transition-all">
                             Take Quiz
                             <svg class="w-4 h-4 ml-2 rtl:rotate-180 group-hover:translate-x-1 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
@@ -132,7 +132,7 @@ checkUserLoggedIn();
                         <li><span class="font-semibold">Difficulty Level:</span> Beginner</li>
                     </ul>
                     <figure class="flex items-center justify-between">
-                        <a href="../../El e2tmad/public/Quiz_php.php?question_Type=mysql" class="group inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 transition-all">
+                        <a href="../../Tournament_Students/public/Quiz_php.php?question_Type=mysql" class="group inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 transition-all">
                             Take Quiz
                             <svg class="w-4 h-4 ml-2 rtl:rotate-180 group-hover:translate-x-1 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
@@ -159,7 +159,7 @@ checkUserLoggedIn();
                         <li><span class="font-semibold">Difficulty Level:</span> Beginner</li>
                     </ul>
                     <figure class="flex items-center justify-between">
-                        <a href="../../El e2tmad/public/Quiz_php.php?question_Type=react.js" class="group inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 transition-all">
+                        <a href="../../Tournament_Students/public/Quiz_php.php?question_Type=react.js" class="group inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 transition-all">
                             Take Quiz
                             <svg class="w-4 h-4 ml-2 rtl:rotate-180 group-hover:translate-x-1 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
@@ -186,7 +186,7 @@ checkUserLoggedIn();
                         <li><span class="font-semibold">Difficulty Level:</span> Beginner</li>
                     </ul>
                     <figure class="flex items-center justify-between">
-                        <a href="../../El e2tmad/public/Quiz_php.php?question_Type=css" class="group inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 transition-all">
+                        <a href="../../Tournament_Students/public/Quiz_php.php?question_Type=css" class="group inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 transition-all">
                             Take Quiz
                             <svg class="w-4 h-4 ml-2 rtl:rotate-180 group-hover:translate-x-1 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
@@ -213,7 +213,7 @@ checkUserLoggedIn();
                         <li><span class="font-semibold">Difficulty Level:</span> Beginner</li>
                     </ul>
                     <figure class="flex items-center justify-between">
-                        <a href="../../El e2tmad/public/Quiz_php.php?question_Type=python" class="group inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 transition-all">
+                        <a href="../../Tournament_Students/public/Quiz_php.php?question_Type=python" class="group inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 transition-all">
                             Take Quiz
                             <svg class="w-4 h-4 ml-2 rtl:rotate-180 group-hover:translate-x-1 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />

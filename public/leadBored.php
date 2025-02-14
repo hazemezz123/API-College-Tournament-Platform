@@ -20,7 +20,7 @@
 <body class="bg-[#111827]">
     <nav class="bg-gray-900 shadow-2xl border-b ">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center ">
-            <a href="../../El e2tmad/public/Home.php">
+            <a href="../../Tournament_Students/public/Home.php">
                 <div class="flex space-x-4 justify-center items-center">
                     <img src="../assets/img/API (2).png" class=" w-24 border-r-2 pr-2" alt="School Logo">
                     <p class="text-white font-bold text-2xl">API</p>

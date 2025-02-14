@@ -126,9 +126,9 @@ if (isset($_GET['question_Type'])) {
 
 <body class="bg-gradient-to-br from-[#1F2937] via-gray-800 to-gray-700 text-VeryLightGray bg-no-repeat infinite-gradient">
     <!-- Navbar -->
-    <nav class="bg-DarkGray shadow-2xl border-b-2 border-gray-700">
+    <nav class="bg-slate-700 shadow-2xl border-b-2 border-gray-700">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="../../El e2tmad/public/Home.php">
+            <a href="../../Tournament_Students/public/Home.php">
                 <div class="flex space-x-4 justify-center items-center">
                     <img src="../assets/img/API (2).png" class=" w-24 border-r-2 pr-2" alt="School Logo">
                     <p class="text-white font-bold text-2xl">API</p>

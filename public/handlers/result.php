@@ -23,7 +23,7 @@ while ($row = $result->fetch_assoc()) {
     } elseif ($score == 5) {
         $_SESSION['result_score'] = "Good but you can get more and more ";
     } elseif ($score > 8) {
-        $_SESSION['result_score'] = "You are a reel programmer 👾";
+        $_SESSION['result_score'] = "You are a real programmer 👾";
     }
 }
 
@@ -69,7 +69,7 @@ if (isset($_COOKIE['user_id'])) {
 </head>
 
 <body class="bg-gradient-to-br h-screen from-[#1F2937] via-gray-800 to-gray-700 text-VeryLightGray bg-no-repeat infinite-gradient">
-    <nav class="bg-DarkGray shadow-2xl border-b-2 border-gray-700">
+    <nav class="bg-slate-700 shadow-2xl border-b-2 border-gray-700">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <a href="../Home.php">
                 <div class="flex space-x-4 justify-center items-center">
