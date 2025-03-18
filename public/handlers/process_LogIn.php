@@ -3,8 +3,9 @@
 </head>
 
 <?php
-session_start();
-include("../handlers/Connection.php");
+// Include config file which already has session_start()
+require_once(__DIR__ . "/../../includes/config.php");
+require_once("./Connection.php");
 
 if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["email"])) {
     $username = Validate($_POST["username"]);

@@ -1,168 +1,188 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
-session_start();
-require("./handlers/Connection.php");
+require_once(__DIR__ . "/../includes/config.php");
+require_once(__DIR__ . "/handlers/Connection.php");
+
+$error = '';
+$success = '';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get and validate input
+    $username = Validate($_POST["username"]);
+    $email = Validate($_POST["email"]);
+    $password = $_POST["password"];
+    $confirm_password = $_POST["confirm_password"];
+    $full_name = Validate($_POST["full_name"]);
+    $age = Validate($_POST["age"]);
+    $bio = Validate($_POST["bio"]);
+    $membership_type = Validate($_POST["membership_type"]);
+    $team_type = Validate($_POST["team_type"]);
+
+    // Validate email format
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = "Invalid email format";
+    }
+    // Check if passwords match
+    elseif ($password !== $confirm_password) {
+        $error = "Passwords do not match";
+    }
+    // Check password strength
+    elseif (strlen($password) < 6) {
+        $error = "Password must be at least 6 characters long";
+    }
+    // Validate team type selection
+    elseif (empty($team_type)) {
+        $error = "Please select a team type";
+    }
+    else {
+        // Check if email already exists
+        $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($result->num_rows > 0) {
+            $error = "Email already registered";
+        } else {
+            // Hash password
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            
+            // Insert new user
+            $stmt = $conn->prepare("INSERT INTO users (username, email, password, full_name, age, bio, membership_type, team_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssssssss", $username, $email, $hashed_password, $full_name, $age, $bio, $membership_type, $team_type);
+            
+            if ($stmt->execute()) {
+                $success = "Registration successful! Please login.";
+                // Redirect to login page after 2 seconds
+                header("refresh:2;url=index.php");
+            } else {
+                $error = "Registration failed. Please try again.";
+            }
+        }
+        $stmt->close();
+    }
+}
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="build.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link rel="stylesheet" href="../src/styles.css">
-    <style>
-        label {
-            text-transform: capitalize;
-        }
-
-        input[type="number"]::-webkit-outer-spin-button,
-        input[type="number"]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        input[type="number"] {
-            -moz-appearance: textfield;
-        }
-
-        @keyframes gradientScroll {
-            0% {
-                background-position: 0% 0%;
-            }
-
-            50% {
-                background-position: 0% 100%;
-            }
-
-            100% {
-                background-position: 0% 0%;
-            }
-        }
-
-        .infinite-gradient {
-            background-size: 150% 150%;
-            animation: gradientScroll 10s ease-in-out infinite;
-        }
-
-        /* Initially hide the team selection dropdown */
-        #teamSelect {
-            display: none;
-        }
-    </style>
+    <title>Sign Up - <?php echo APP_NAME; ?></title>
+    <link rel="stylesheet" href="/build.css">
 </head>
+<body class="bg-[#1a1f2e] text-white">
+    <div class="container mx-auto px-4">
+        <!-- Header with logo and buttons -->
+        <header class="flex justify-between items-center py-4">
+            <div class="flex items-center">
+                <img src="assets/Img/API (2).png" alt="API College Logo" class="h-8 w-8 mr-2">
+                <span class="text-xl font-semibold">API College</span>
+            </div>
+            <div>
+                <a href="index.php" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md mr-2">Login</a>
+                <button class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md">Sign Up</button>
+            </div>
+        </header>
 
-<body class="bg-gray-900 max-md:h-full text-VeryLightGray bg-no-repeat infinite-gradient">
-    <nav class="bg-slate-900 shadow-2xl border-b-2 border-b-VeryLightGray">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="../../El e2tmad/public/Home.php">
-                <div class="flex space-x-4 justify-center items-center">
-                    <img src="../assets/img/API (2).png" class="w-24 border-r-2 pr-2" alt="School Logo">
-                    <p class="text-white font-bold text-2xl">API</p>
+        <!-- Main content -->
+        <div class="min-h-[calc(100vh-8rem)] flex flex-col items-center justify-center">
+            <h1 class="text-4xl font-bold text-center mb-2 text-blue-400">Welcome to API College Student Tournament</h1>
+            <p class="text-gray-400 text-center mb-8">Test your programming skills, compete with peers, and showcase your knowledge in various technology domains.</p>
+
+            <!-- Sign Up Form -->
+            <div class="w-full max-w-md bg-[#1e2530] rounded-lg shadow-lg p-8">
+                <h2 class="text-2xl font-bold mb-6">Create Your Account</h2>
+                
+                <?php if ($error): ?>
+                    <div class="bg-red-900/50 border border-red-500 text-red-200 px-4 py-3 rounded relative mb-4" role="alert">
+                        <span class="block sm:inline"><?php echo $error; ?></span>
+                    </div>
+                <?php endif; ?>
+                <?php if ($success): ?>
+                    <div class="bg-green-900/50 border border-green-500 text-green-200 px-4 py-3 rounded relative mb-4" role="alert">
+                        <span class="block sm:inline"><?php echo $success; ?></span>
+                    </div>
+                <?php endif; ?>
+
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" class="space-y-4">
+                    <div>
+                        <label for="username" class="block text-sm font-medium mb-1">Username</label>
+                        <input id="username" name="username" type="text" required 
+                               class="w-full px-3 py-2 bg-[#2a303c] border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+
+                    <div>
+                        <label for="email" class="block text-sm font-medium mb-1">Email</label>
+                        <input id="email" name="email" type="email" required 
+                               class="w-full px-3 py-2 bg-[#2a303c] border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+
+                    <div>
+                        <label for="password" class="block text-sm font-medium mb-1">Password</label>
+                        <input id="password" name="password" type="password" required 
+                               class="w-full px-3 py-2 bg-[#2a303c] border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+
+                    <div>
+                        <label for="confirm_password" class="block text-sm font-medium mb-1">Confirm Password</label>
+                        <input id="confirm_password" name="confirm_password" type="password" required 
+                               class="w-full px-3 py-2 bg-[#2a303c] border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+
+                    <div>
+                        <label for="full_name" class="block text-sm font-medium mb-1">Full Name</label>
+                        <input id="full_name" name="full_name" type="text" required 
+                               class="w-full px-3 py-2 bg-[#2a303c] border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+
+                    <div>
+                        <label for="age" class="block text-sm font-medium mb-1">Age</label>
+                        <input id="age" name="age" type="number" required 
+                               class="w-full px-3 py-2 bg-[#2a303c] border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+
+                    <div>
+                        <label for="team_type" class="block text-sm font-medium mb-1">Team Type</label>
+                        <select id="team_type" name="team_type" required 
+                                class="w-full px-3 py-2 bg-[#2a303c] border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="">Select Team Type</option>
+                            <option value="alpha">Alpha Team</option>
+                            <option value="beta">Beta Team</option>
+                            <option value="gamma">Gamma Team</option>
+                            <option value="delta">Delta Team</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="bio" class="block text-sm font-medium mb-1">Bio</label>
+                        <textarea id="bio" name="bio" rows="3" 
+                                  class="w-full px-3 py-2 bg-[#2a303c] border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                    </div>
+
+                    <div>
+                        <label for="membership_type" class="block text-sm font-medium mb-1">Membership Type</label>
+                        <select id="membership_type" name="membership_type" required 
+                                class="w-full px-3 py-2 bg-[#2a303c] border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="individual">Individual</option>
+                            <option value="team">Team</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" 
+                            class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                        Sign Up
+                    </button>
+                </form>
+
+                <div class="mt-4 text-center">
+                    <p class="text-gray-400">
+                        Already have an account? 
+                        <a href="index.php" class="text-blue-400 hover:text-blue-300">Login</a>
+                    </p>
                 </div>
-            </a>
+            </div>
         </div>
-    </nav>
-    <main class="flex justify-center items-center w-full">
-        <form action="handlers/process_SignUp.php" method="POST" class="p-6 w-[600px] mt-10 mb-10 rounded-lg shadow-md bg-gray-800 hover:border-blue-500 transition-all border border-transparent">
-            <h2 class="text-2xl font-bold mb-4 text-VeryLightGray">Create a new Account</h2>
-            <!-- Username Input -->
-            <div class="mb-4">
-                <label for="username" class="block text-SoftGray pb-2">Username</label>
-                <div class="relative">
-                    <input autocomplete="off" type="text" id="username" name="username" required class="border border-slate-700 rounded w-full py-2 px-3 bg-slate-800 text-gray-100 focus:ring-4 focus:ring-blue-500 focus:outline-none transition-all">
-                    <span>
-                        <i class="fa-solid fa-user absolute top-1/2 -translate-y-1/2 right-3"></i>
-                    </span>
-                </div>
-            </div>
-            <!-- Email Input -->
-            <div class="mb-4">
-                <label for="email" class="block text-SoftGray pb-2">Email</label>
-                <div class="relative">
-                    <input autocomplete="off" type="email" id="email" name="email" required class="border border-slate-700 rounded w-full py-2 px-3 bg-slate-800 text-gray-100 focus:ring-4 focus:ring-blue-500 focus:outline-none transition-all">
-                    <span>
-                        <i class="fa-solid fa-envelope absolute top-1/2 -translate-y-1/2 right-3"></i>
-                    </span>
-                </div>
-            </div>
-            <!-- Age Input -->
-            <div class="mb-4">
-                <label for="age" class="block text-SoftGray pb-2">Age</label>
-                <div class="relative">
-                    <input autocomplete="off" min='19' max="25" type="number" id="age" name="age" required class="border border-slate-700 rounded w-full py-2 px-3 bg-slate-800 text-gray-100 focus:ring-4 focus:ring-blue-500 focus:outline-none transition-all">
-                    <span>
-                        <i class="fa-solid fa-circle-info absolute top-1/2 -translate-y-1/2 right-3"></i>
-                    </span>
-                </div>
-            </div>
-            <!-- Password Input -->
-            <div class="mb-4">
-                <label for="password" class="block text-SoftGray pb-2">Password</label>
-                <div class="relative">
-                    <input autocomplete="off" type="password" id="password" name="password" required class="border border-slate-700 rounded w-full py-2 px-3 bg-slate-800 text-gray-100 focus:ring-4 focus:ring-blue-500 focus:outline-none transition-all">
-                    <span>
-                        <i id="togglePassword" class="fa-solid fa-lock absolute top-1/2 -translate-y-1/2 right-3 cursor-pointer"></i>
-                    </span>
-                </div>
-            </div>
-            <div class="my-4 flex gap-5">
-                <div class="flex justify-center items-center">
-                    <input type="radio" name="participation_type" value="individual" required id="individual" checked>
-                    <label for="individual" class="text-SoftGray cursor-pointer">Individual</label>
-                </div>
-                <div class="flex justify-center items-center">
-                    <input type="radio" name="participation_type" value="team" required id="team">
-                    <label for="team" class="text-SoftGray cursor-pointer">Team</label>
-                </div>
-            </div>
-            <!-- Team Selection Dropdown -->
-            <div id="teamSelect">
-                <label for="teamSelectDropdown" class="block text-SoftGray pb-2">Select Your Team</label>
-                <select id="teamSelectDropdown" name="team" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 transition-all p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 block w-full">
-                    <option selected disabled>Select Team</option>
-                    <option value="1">Team_1</option>
-                    <option value="2">Team_2</option>
-                    <option value="3">Team_3</option>
-                    <option value="4">Team_4</option>
-                </select>
-            </div>
-            <!-- Submit Button -->
-            <div class="flex flex-col sm:flex-row gap-5 items-center justify-start mt-4">
-                <button type="submit" class="text-white transition-all border bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Sign Up</button>
-            </div>
-            <?php
-            if (isset($_SESSION['Submit'])) {
-                echo $_SESSION['Submit'];
-            }
-            ?>
-        </form>
-    </main>
-    <script>
-        const togglePassword = document.getElementById("togglePassword");
-        const passwordInput = document.getElementById("password");
-        togglePassword.addEventListener("click", function() {
-            const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
-            passwordInput.setAttribute("type", type);
-            togglePassword.classList.toggle("fa-lock-open");
-            togglePassword.classList.toggle("fa-lock");
-        });
-
-        // JavaScript to show/hide team selection dropdown
-        const individualRadio = document.getElementById("individual");
-        const teamRadio = document.getElementById("team");
-        const teamSelect = document.getElementById("teamSelect");
-
-        individualRadio.addEventListener("change", function() {
-            teamSelect.style.display = "none";
-
-        });
-
-        teamRadio.addEventListener("change", function() {
-            teamSelect.style.display = "block";
-        });
-    </script>
+    </div>
 </body>
-
-</html>
+</html> 

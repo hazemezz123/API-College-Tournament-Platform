@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Debug Images</title>
+    <style>
+      body {
+        font-family: Arial;
+        padding: 20px;
+        background: #111827;
+        color: white;
+      }
+      .image-box {
+        border: 1px solid #666;
+        padding: 10px;
+        margin: 10px;
+        display: inline-block;
+        text-align: center;
+      }
+      img {
+        max-width: 120px;
+        max-height: 120px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Image Debug Test</h1>
+
+    <div class="image-box">
+      <img src="assets/Img/php.png" alt="PHP" />
+      <p>PHP (relative path)</p>
+    </div>
+
+    <div class="image-box">
+      <img src="/assets/Img/php.png" alt="PHP" />
+      <p>PHP (absolute path)</p>
+    </div>
+
+    <div class="image-box">
+      <img src="http://localhost:8000/assets/Img/php.png" alt="PHP" />
+      <p>PHP (full URL)</p>
+    </div>
+
+    <div class="image-box">
+      <img
+        src="data:image/png;base64,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"
+        alt="PHP"
+      />
+      <p>PHP (inline base64)</p>
+    </div>
+
+    <br />
+    <div class="image-box">
+      <img src="assets/Img/html.png" alt="HTML" />
+      <p>HTML (relative path)</p>
+    </div>
+
+    <div class="image-box">
+      <img src="assets/Img/css-3.png" alt="CSS" />
+      <p>CSS (relative path)</p>
+    </div>
+
+    <div class="image-box">
+      <img src="assets/Img/python.png" alt="Python" />
+      <p>Python (relative path)</p>
+    </div>
+
+    <div class="image-box">
+      <img src="assets/Img/language.png" alt="MySQL" />
+      <p>MySQL (relative path)</p>
+    </div>
+
+    <div class="image-box">
+      <img src="assets/Img/structure.png" alt="JavaScript" />
+      <p>JavaScript (relative path)</p>
+    </div>
+
+    <br />
+    <a href="Home.php" style="color: #3b82f6">Back to Home</a>
+  </body>
+</html>
